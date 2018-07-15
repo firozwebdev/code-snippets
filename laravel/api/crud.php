@@ -18,9 +18,9 @@ class SellerProductController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Seller $seller)
+    public function index()
     {
-        $products = $seller->products;
+        $products = Product::all();
 
         return response()->json($products, 200);
     }

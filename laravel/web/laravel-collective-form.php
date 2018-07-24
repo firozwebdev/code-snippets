@@ -16,7 +16,7 @@
         
     ],
 
-
+Not: When collective form is used , no need to place {{ csrf_field() }} inside the form because it is automatically included.
 -->
 
 

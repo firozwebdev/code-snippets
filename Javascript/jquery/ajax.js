@@ -7,6 +7,7 @@ $.get("Url", function(res, status){
 });
 
 
+//Post method
 
 $.post("Url", data, function(res, status){  // passing data to the server 
     console.log(res);
@@ -28,3 +29,5 @@ var request = $.ajax({
   request.fail(function( jqXHR, textStatus ) {
     alert( "Request failed: " + textStatus );
   });
+
+  

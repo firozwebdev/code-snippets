@@ -92,7 +92,7 @@ class EcommerceProductController extends Controller{
                 $id=$request->id;
                 $file = $request->file('product_image');
                 if($file){   // update with image
-                    $fileName = $file->getClientOriginalName();
+                    $fileName = time().$file->getClientOriginalName();
                     $request->file('product_image')->move("front_assets/upload/",$fileName);
                     $update_category = Eproduct::findOrFail($id)->update([
                         'product_title' => $request->product_title,

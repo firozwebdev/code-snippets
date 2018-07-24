@@ -45,7 +45,7 @@ class CRUD extends CI_Controller{
 
 	   
 	   
-	     redirect('admincontroller/manage_post');
+	    redirect('admincontroller/manage_post');
 	}
 
 	public function manage_post(){

@@ -17,16 +17,10 @@ class ProductController extends Controller
     public function index()
     {
        $products = Product::all();
-        return view('pages.product.index')->with('products',$products);
+        return view('products.index')->with('products',$products);
     }
 
-    // public function getAllProducts(){
-    //     $categories = Category::all();
-    //     return response()->json([
-    //         'categories' => $categories
-    //     ]);
-       
-    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +30,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('pages.product.add-product')->with('categories',$categories);
+        return view('products.create')->with('categories',$categories);
     }
 
     /**
@@ -63,7 +57,7 @@ class ProductController extends Controller
                 'quantity' => $request->quantity,
                 'status' => $request->status,
             ]);
-            Session::put('message', 'Save Product Information Successfully !');
+            Session::put('message', 'Product saved  Successfully !');
             return redirect()->route('products.create');
         }else{
             return "Image is not selected";
@@ -79,7 +73,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
        
-        return view('pages.product.single-product')->with('product',$product);
+        return view('products.show')->with('product',$product);
     }
 
     /**
@@ -88,20 +82,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    // 'title' => $request->title,
-    // 'slug' => str_slug($request->title),
-    // 'category_id' => $request->category_id,
-    // 'image' => $fileName,
-    // 'description' => $request->description,
-    // 'type' => $request->type,
-    // 'price' => $request->price,
-    // 'quantity' => $request->quantity,
-    // 'status' => $request->status,
+
 
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('pages.product.edit-product')->with([
+        return view('products.edit')->with([
             'categories'=> $categories,
             'product' => $product
         ]);
@@ -127,7 +113,6 @@ class ProductController extends Controller
 
         
         
-       
         if($request->has('image')){
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();
@@ -137,7 +122,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        Session::put('message', 'Update Product Information Successfully !');
+        Session::put('message', 'Product udpated Successfully !');
         return redirect()->route('products.index');
 
     }
@@ -155,24 +140,7 @@ class ProductController extends Controller
     }
 
 
-    // public function product_by_id($id)
-    // {
-    //     $category = Category::findOrFail($id);
-    //     return response()->json([
-    //         'category' => $category
-    //     ]);
-    // }
 
-    // public function ajaxUpateCategory(Request $request){
-    //     //return $request->category['categoryId'];
-    //     $category = Category::findOrFail($request->category['categoryId']);
-    //     $category->name = $request->category['categoryName'];
-    //     $category->description = $request->category['categoryDescription'];
-    //     $category->save();
-    //     return response()->json([
-    //         'message' => "Category is updated"
-    //     ]);
-    // }
 
 
 }

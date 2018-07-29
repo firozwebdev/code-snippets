@@ -50,3 +50,23 @@ Not: When collective form is used , no need to place {{ csrf_field() }} inside t
 {!!Form::close()!!}
 
 
+
+<!-- This below form should be used for delete method with  laravel resource controller   -->
+
+//Form
+
+ {!! Form::open(['method' => 'DELETE', 'route' => ['posts.destroy', 'id'=>$post->id]]) !!}
+    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+ {!! Form::close() !!}
+
+ // Controller code will be ....
+<?php 
+
+ public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+        Session::put('message', 'Delete !');
+        return redirect()->route('posts.index');
+}
+
